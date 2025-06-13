@@ -24,3 +24,5 @@ public class TrabajadorDaoTest {
         assertTrue("El trabajador no se insertó correctamente", resultado);
     }
 }
+
+//TEST
