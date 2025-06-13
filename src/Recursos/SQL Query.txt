@@ -1,0 +1,168 @@
+DROP DATABASE IF EXISTS integrador;
+CREATE DATABASE integrador;
+use Integrador;
+
+create table TRABAJADOR(
+ID_trabajador int primary key auto_increment,
+Nombre varchar(50),
+Apellido varchar(50),
+Edad int,
+Sexo int,
+Fech_Nac date,
+Est_Civ int,
+Direccion varchar(50),
+Distrito int,
+Departamento int,
+Email varchar(30),
+Cargo int,
+Fech_Ing date,
+Estado int,
+Tip_Contrato int,
+Area_Trab int,
+Sueldo decimal(6,2),
+Niv_Inst int
+);
+
+CREATE TABLE sexo(
+ID_SEXO int primary key auto_increment,
+Tipo varchar(9)
+);
+
+create table civil(
+ID_CIVIL int PRIMARY KEY AUTO_INCREMENT,
+tipo varchar(10)
+);
+
+CREATE TABLE distrito(
+ID_DISTRITO int PRIMARY KEY AUTO_INCREMENT,
+tipo varchar(25)
+);
+
+create TABLE departamento(
+ID_DEPARTAMENTO int PRIMARY key AUTO_INCREMENT,
+tipo varchar(10)
+);
+
+create table cargo(
+ID_CARGO int PRIMARY KEY AUTO_INCREMENT,
+tipo varchar(20)
+);
+
+create table estado(
+ID_ESTADO int PRIMARY KEY AUTO_INCREMENT,
+tipo varchar(10)
+);
+
+create table contrato(
+ID_CONTRATO int PRIMARY KEY AUTO_INCREMENT,
+tipo varchar(25)
+);
+
+create table area(
+ID_AREA int PRIMARY KEY AUTO_INCREMENT,
+tipo varchar(25)
+);
+
+create table instruccion(
+ID_INSTRUCCION int PRIMARY KEY AUTO_INCREMENT,
+tipo varchar(25)
+);
+
+alter table TRABAJADOR
+ADD CONSTRAINT fk_trabajador_sexo
+FOREIGN KEY (Sexo)
+REFERENCES sexo(ID_SEXO),
+ADD CONSTRAINT fk_trabajador_civil
+FOREIGN KEY(est_civ)
+REFERENCES civil(ID_CIVIL),
+ADD CONSTRAINT fk_trabajador_distrito
+FOREIGN KEY(distrito)
+REFERENCES distrito(ID_DISTRITO),
+ADD CONSTRAINT fk_trabajador_departamento
+FOREIGN KEY(departamento)
+REFERENCES departamento(ID_DEPARTAMENTO),
+ADD CONSTRAINT fk_trabajador_cargo
+FOREIGN KEY(cargo)
+REFERENCES cargo(ID_CARGO),
+ADD CONSTRAINT fk_trabajador_estado
+FOREIGN KEY(estado)
+REFERENCES estado(ID_ESTADO),
+ADD CONSTRAINT fk_trabajador_contrato
+FOREIGN KEY(Tip_contrato)
+REFERENCES contrato(ID_CONTRATO),
+ADD CONSTRAINT fk_trabajador_area
+FOREIGN KEY(area_trab)
+REFERENCES area(ID_AREA),
+ADD CONSTRAINT fk_trabajador_instruccion
+FOREIGN KEY(niv_inst)
+REFERENCES instruccion(ID_INSTRUCCION);
+
+INSERT INTO sexo (tipo) VALUES 
+('Masculino'),
+('Femenino');
+
+INSERT INTO civil (tipo) VALUES 
+('Soltero(a)'),
+('Casado(a)'),
+('Viudo(a)');
+
+INSERT INTO distrito (tipo) VALUES 
+('Chorillos'),
+('La Victoria'),
+('Miraflores'),
+('Jesus Maria'),
+('Breña'),
+('San Juan de Lurigancho'),
+('Barranco'),
+('San Juan de Miraflores');
+
+INSERT INTO departamento (tipo) VALUES 
+('Lima'),
+('Tacna'),
+('Piura'),
+('Ica'),
+('Tumbes'),
+('Arequipa');
+
+INSERT INTO cargo (tipo) VALUES 
+('Administrador'),
+('Administrador de sistemas'),
+('Profesor'),
+('Auxiliar'),
+('Consejo directivo'),
+('Secretaria'),
+('Contador'),
+('Mantenimiento');
+
+INSERT INTO estado (tipo) VALUES 
+('Activo'),
+('Retirado');
+
+INSERT INTO contrato (tipo) VALUES 
+('Locación de servicios'),
+('CAS'),
+('CPD');
+
+INSERT INTO area (tipo) VALUES 
+('Oficina de Adm'),
+('Oficina de educación'),
+('Aula'),
+('Coordinación'),
+('Psicomotriz'),
+('Taller');
+
+INSERT INTO instruccion (tipo) VALUES 
+('Secundaria completa'),
+('Tec. Incompleta'),
+('Tec. Completa'),
+('Universidad Incompleta'),
+('Universidad Completa'),
+('Superior post grado'),
+('Magister'),
+('Doctor');
+
+INSERT INTO TRABAJADOR (Nombre, Apellido, Edad, Sexo, Fech_Nac, Est_Civ, Direccion, Distrito, Departamento, Email, Cargo, Fech_Ing, Estado, Tip_Contrato, Area_Trab, Sueldo, Niv_Inst) VALUES
+('Luis Fabricio', 'Atencio Covarrubias', 19, 1, '2004-02-19', 1, 'Los Geranios 112', 1, 1, 'luisatencio0419@gmail.com', 2, '2023-08-01', 1, 1, 1, 2400.00, 5),
+('Aaron Andree', 'Gonzales Zurita', 19, 1, '2004-06-16', 1, 'Mirones 224', 2, 1, 'aarongonzales1528@gmail.com', 5, '2023-07-01', 1, 1, 2, 1800.00, 5),
+('Diego Sebastian', 'Huaman Huaman', 19, 1, '2004-04-14', 1, 'Jicamarca 205', 6, 1, 'diego845@gmail.com', 2, '2023-01-01', 1, 1, 1, 3600.00, 6),
+('Aldair', 'Sosa', 19, 1, '2004-09-14', 1, 'Las Amapolas 447', 1, 1, 'aldairsosa48@gmail.com', 3, '2021-02-01', 1, 1, 4, 2900.00, 5);
